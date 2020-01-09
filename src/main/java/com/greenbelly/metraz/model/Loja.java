@@ -1,5 +1,7 @@
 package com.greenbelly.metraz.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,16 +25,17 @@ public class Loja {
     private boolean online;
 
     @NotNull(message = "Informe uma categoria.")
-    @OneToOne(cascade = CascadeType.REFRESH)
+    @OneToOne
     private CategoriaLoja categoriaLoja;
 
     @NotNull(message = "Informe o responsavel.")
-    @OneToOne(cascade = CascadeType.REFRESH)
+    @OneToOne(cascade = CascadeType.ALL)
     private Usuario responsavel;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
+    @JsonManagedReference
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -40,6 +43,7 @@ public class Loja {
     )
     private List<Usuario> usuarios;
 
+    @JsonManagedReference
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,

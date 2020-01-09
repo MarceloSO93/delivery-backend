@@ -2,6 +2,7 @@ package com.greenbelly.metraz.service;
 
 import com.greenbelly.metraz.dto.LojaProdutosDTO;
 import com.greenbelly.metraz.model.Loja;
+import com.greenbelly.metraz.model.Usuario;
 import com.greenbelly.metraz.repository.LojaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class LojaService {
     private LojaRepository repository;
 
     public Loja insert(Loja loja) {
+        loja.getResponsavel().setLoja(loja);
         return repository.save(loja);
     }
 

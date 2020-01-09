@@ -1,5 +1,7 @@
 package com.greenbelly.metraz.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -26,7 +28,9 @@ public class Usuario {
 
     private TipoUsuario tipoUsuario;
 
+    @JsonBackReference
     @ManyToOne
+    @JoinColumn(name="loja_id")
     private Loja loja;
 
     public Long getId() {
