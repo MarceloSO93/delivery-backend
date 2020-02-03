@@ -1,13 +1,16 @@
 package com.greenbelly.metraz.resource;
 
 import com.greenbelly.metraz.model.CategoriaLoja;
+import com.greenbelly.metraz.model.ModalidadeTrabalho;
 import com.greenbelly.metraz.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -44,6 +47,25 @@ public class CategoriaResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public CategoriaLoja findOne(@PathVariable("id") Long id) {
         return service.findOne(id);
+    }
+
+    @GetMapping(path = "/modalidade",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CategoriaLoja> findByModalidadeTrabalho(@RequestParam("modalidade") ModalidadeTrabalho modalidadeTrabalho) {
+        return service.findByModalidadeTrabalho(modalidadeTrabalho);
+    }
+
+    @PutMapping(path = "/image/{id}")
+    public String saveFoto(@PathVariable("id") Long id, @RequestParam MultipartFile foto) throws IOException {
+        return service.saveImage(id, foto.getBytes());
+    }
+
+    @GetMapping(path = "/image/{id}")
+    public ResponseEntity<String> getFoto(@PathVariable("id") Long id) {
+        String fotoBase64 = service.getFoto(id);
+        return fotoBase64 != null ?
+                ResponseEntity.ok(fotoBase64) :
+                ResponseEntity.notFound().build();
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

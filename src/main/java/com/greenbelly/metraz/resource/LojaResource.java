@@ -44,8 +44,14 @@ public class LojaResource {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<LojaProdutosDTO> findAll(){
+    public List<LojaProdutosDTO> findAll() {
         return service.findAll();
+    }
+
+    @GetMapping(path = "/categoria",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<LojaProdutosDTO> findByIdCategoria(@RequestParam("id") Long id) {
+        return service.findByIdCAtegoria(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

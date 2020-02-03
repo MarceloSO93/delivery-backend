@@ -35,6 +35,10 @@ public class ProdutoService {
         return repository.findById(id).get();
     }
 
+    public List<Produto> findByIdLoja(Long id) {
+        return repository.findByIdLoja(id);
+    }
+
     public void delete(Long id) {
         repository.deleteById(id);
     }

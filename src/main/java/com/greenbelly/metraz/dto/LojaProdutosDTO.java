@@ -8,7 +8,7 @@ import com.greenbelly.metraz.model.Loja;
 public class LojaProdutosDTO {
 
     private Long id;
-    private String nomeLoja;
+    private String nome;
     private String email;
     private boolean online;
     private String telefone;
@@ -17,14 +17,14 @@ public class LojaProdutosDTO {
 
     public LojaProdutosDTO(
             Long id,
-            String nomeLoja,
+            String nome,
             boolean online,
             String telefone,
             CategoriaLoja categoriaLoja,
             Endereco endereco
     ) {
         this.id = id;
-        this.nomeLoja = nomeLoja;
+        this.nome = nome;
         this.email = email;
         this.online = online;
         this.telefone = telefone;
@@ -51,12 +51,12 @@ public class LojaProdutosDTO {
         this.id = id;
     }
 
-    public String getNomeLoja() {
-        return nomeLoja;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeLoja(String nomeLoja) {
-        this.nomeLoja = nomeLoja;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {

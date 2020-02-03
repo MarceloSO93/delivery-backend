@@ -48,6 +48,12 @@ public class ProdutoResource {
         return service.findAll();
     }
 
+    @GetMapping(path = "/find-by-loja/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Produto> findByIdLoja(@PathVariable("id") Long id) {
+        return service.findByIdLoja(id);
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(path = "{id}")
     public void delete(@PathVariable("id") Long id) {

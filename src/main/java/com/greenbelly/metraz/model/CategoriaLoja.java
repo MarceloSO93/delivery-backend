@@ -19,6 +19,9 @@ public class CategoriaLoja implements Serializable {
 
     private ModalidadeTrabalho modalidadeTrabalho;
 
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
+
     public Long getId() {
         return id;
     }
@@ -49,5 +52,13 @@ public class CategoriaLoja implements Serializable {
 
     public void setModalidadeTrabalho(ModalidadeTrabalho modalidadeTrabalho) {
         this.modalidadeTrabalho = modalidadeTrabalho;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

@@ -2,7 +2,6 @@ package com.greenbelly.metraz.service;
 
 import com.greenbelly.metraz.dto.LojaProdutosDTO;
 import com.greenbelly.metraz.model.Loja;
-import com.greenbelly.metraz.model.Usuario;
 import com.greenbelly.metraz.repository.LojaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +27,19 @@ public class LojaService {
     public List<LojaProdutosDTO> findAll() {
 
         List<Loja> lojaProdutos = repository.findAll();
+
+        List<LojaProdutosDTO> lojaProdutosDTOList = new ArrayList<>();
+
+        lojaProdutos.forEach(lojaProdutos1 -> {
+            lojaProdutosDTOList.add(LojaProdutosDTO.convertOneDTO(lojaProdutos1));
+        });
+
+        return lojaProdutosDTOList;
+    }
+
+    public List<LojaProdutosDTO> findByIdCAtegoria(Long id) {
+
+        List<Loja> lojaProdutos = repository.findByIdCategoria(id);
 
         List<LojaProdutosDTO> lojaProdutosDTOList = new ArrayList<>();
 
