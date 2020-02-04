@@ -5,6 +5,7 @@ import com.greenbelly.metraz.model.Loja;
 import com.greenbelly.metraz.repository.LojaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,20 @@ public class LojaService {
         });
 
         return lojaProdutosDTOList;
+    }
+
+    public String saveImage(Long id, byte[] foto) {
+        Loja loja = repository.findById(id).get();
+        loja.setLogo(foto);
+        repository.save(loja);
+        return Base64Utils.encodeToString(foto);
+    }
+
+    public String getFoto(Long id) {
+        byte[] foto = repository.findById(id).get().getLogo();
+        return foto != null ? Base64Utils.encodeToString(
+                foto
+        ) : null;
     }
 
     public LojaProdutosDTO findOne(Long id) {

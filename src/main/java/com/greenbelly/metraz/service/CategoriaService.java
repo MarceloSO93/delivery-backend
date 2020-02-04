@@ -37,9 +37,9 @@ public class CategoriaService {
     }
 
     public String saveImage(Long id, byte[] foto) {
-        CategoriaLoja Categoria = repository.findById(id).get();
-        Categoria.setImage(foto);
-        repository.save(Categoria);
+        CategoriaLoja categoria = repository.findById(id).get();
+        categoria.setImage(foto);
+        repository.save(categoria);
         return Base64Utils.encodeToString(foto);
     }
 

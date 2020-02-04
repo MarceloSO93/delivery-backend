@@ -14,6 +14,7 @@ public class LojaProdutosDTO {
     private String telefone;
     private CategoriaLoja categoriaLoja;
     private Endereco endereco;
+    private byte[] logo;
 
     public LojaProdutosDTO(
             Long id,
@@ -21,7 +22,8 @@ public class LojaProdutosDTO {
             boolean online,
             String telefone,
             CategoriaLoja categoriaLoja,
-            Endereco endereco
+            Endereco endereco,
+            byte[] logo
     ) {
         this.id = id;
         this.nome = nome;
@@ -30,6 +32,7 @@ public class LojaProdutosDTO {
         this.telefone = telefone;
         this.categoriaLoja = categoriaLoja;
         this.endereco = endereco;
+        this.logo = logo;
     }
 
     public static LojaProdutosDTO convertOneDTO(Loja loja) {
@@ -39,7 +42,8 @@ public class LojaProdutosDTO {
                 loja.isOnline(),
                 loja.getTelefone(),
                 loja.getCategoriaLoja(),
-                loja.getEndereco()
+                loja.getEndereco(),
+                loja.getLogo()
         );
     }
 
@@ -97,5 +101,13 @@ public class LojaProdutosDTO {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
     }
 }
