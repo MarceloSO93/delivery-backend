@@ -58,7 +58,7 @@ public class LojaService {
         return Base64Utils.encodeToString(foto);
     }
 
-    public String getFoto(Long id) {
+    public String getImagem(Long id) {
         byte[] foto = repository.findById(id).get().getLogo();
         return foto != null ? Base64Utils.encodeToString(
                 foto

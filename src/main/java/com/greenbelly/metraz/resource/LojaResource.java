@@ -63,7 +63,7 @@ public class LojaResource {
 
     @GetMapping(path = "/image/{id}")
     public ResponseEntity<String> getFoto(@PathVariable("id") Long id) {
-        String fotoBase64 = service.getFoto(id);
+        String fotoBase64 = service.getImagem(id);
         return fotoBase64 != null ?
                 ResponseEntity.ok(fotoBase64) :
                 ResponseEntity.notFound().build();

@@ -3,11 +3,12 @@ package com.greenbelly.metraz.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "LOJAS")
-public class Loja {
+public class Loja implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

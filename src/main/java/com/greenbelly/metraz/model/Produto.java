@@ -1,14 +1,16 @@
 package com.greenbelly.metraz.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "PRODUTOS")
-public class Produto {
+public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +28,10 @@ public class Produto {
     @Basic(fetch = FetchType.LAZY)
     private byte[] imagem;
 
-    @JsonBackReference
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne()
     @JoinColumn(name="loja_id")
+    @NotNull
     private Loja loja;
 
     public Long getId() {
@@ -78,4 +81,5 @@ public class Produto {
     public void setLoja(Loja loja) {
         this.loja = loja;
     }
+
 }

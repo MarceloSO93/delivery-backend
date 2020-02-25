@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -48,10 +50,23 @@ public class ProdutoResource {
         return service.findAll();
     }
 
-    @GetMapping(path = "/find-by-loja/{id}",
+    @GetMapping(path = "/find-by-loja",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Produto> findByIdLoja(@PathVariable("id") Long id) {
+    public List<Produto> findByIdLoja(@RequestParam("id") Long id) {
         return service.findByIdLoja(id);
+    }
+
+    @PutMapping(path = "/image/{id}")
+    public String saveFoto(@PathVariable("id") Long id, @RequestParam MultipartFile foto) throws IOException {
+        return service.saveImage(id, foto.getBytes());
+    }
+
+    @GetMapping(path = "/image/{id}")
+    public ResponseEntity<String> getFoto(@PathVariable("id") Long id) {
+        String fotoBase64 = service.getImagem(id);
+        return fotoBase64 != null ?
+                ResponseEntity.ok(fotoBase64) :
+                ResponseEntity.notFound().build();
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

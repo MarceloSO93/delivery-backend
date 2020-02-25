@@ -12,15 +12,17 @@ public class ProdutoDTO {
     private String nome;
     private BigDecimal valor;
     private String marca;
+    private byte[] imagem;
 
     public ProdutoDTO() {
     }
 
-    private ProdutoDTO(Long id, String descricao, String nome, BigDecimal valor) {
+    private ProdutoDTO(Long id, String descricao, String nome, BigDecimal valor, byte[] imagem) {
         this.id = id;
         this.descricao = descricao;
         this.nome = nome;
         this.valor = valor;
+        this.imagem = imagem;
     }
 
     public static ProdutoDTO convertOneDTO(Produto produto) {
@@ -28,7 +30,8 @@ public class ProdutoDTO {
                 produto.getId(),
                 produto.getDescricao(),
                 produto.getNome(),
-                produto.getValor()
+                produto.getValor(),
+                produto.getImagem()
         );
     }
 
@@ -70,5 +73,13 @@ public class ProdutoDTO {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 }
